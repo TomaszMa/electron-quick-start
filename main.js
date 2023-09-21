@@ -1,6 +1,8 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Tray } = require('electron')
 const path = require('path')
+
+let appIcon = null;
 
 function createWindow () {
   // Create the browser window.
@@ -24,6 +26,37 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
+
+  // appIcon = new Tray('C:/Users/User/Projects/OpenFin/electron_test_apps/electron_tray_icon/resources/sample.png');
+  appIcon = new Tray('resources/sample.png');
+
+  appIcon.on("click", function() {
+    console.log("Left Click !!!");
+  });
+
+  appIcon.on("right-click", function() {
+    console.log("Right Click !!!");
+  });
+
+  appIcon.on("mouse-up", function() {
+    console.log("Mouse Up !!!");
+  });
+
+  appIcon.on("mouse-down", function() {
+    console.log("Mouse Down !!!");
+  });
+
+  appIcon.on("middle-click", function() {
+    console.log("Middle Click !!!");
+  });
+
+  appIcon.on("mouse-enter", function() {
+    console.log("Mouse Enter !!!");
+  });
+
+  appIcon.on("mouse-leave", function() {
+    console.log("Mouse Leave !!!");
+  });
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
